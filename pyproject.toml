@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "payflow-api"
+version = "1.0.0"
+description = "A payment gateway infrastructure showcase"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# ── Web framework ──────────────────────────────────────────
+fastapi = "^0.111.0"          # The web framework
+uvicorn = {extras = ["standard"], version = "^0.29.0"}  # ASGI server that runs FastAPI
+
+# ── Database ───────────────────────────────────────────────
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.0"} # ORM + async support
+asyncpg = "^0.29.0"           # Async PostgreSQL driver (used by SQLAlchemy at runtime)
+psycopg2-binary = "^2.9.9"    # Sync PostgreSQL driver (used by Alembic only)
+alembic = "^1.13.0"           # Database migrations
+
+# ── Redis ──────────────────────────────────────────────────
+redis = {extras = ["hiredis"], version = "^5.0.0"}  # Redis client + fast C parser
+
+# ── Async workers ──────────────────────────────────────────
+celery = {extras = ["redis"], version = "^5.3.0"}   # Task queue for background jobs
+
+# ── Config & validation ────────────────────────────────────
+pydantic = "^2.7.0"           # Data validation (used everywhere)
+pydantic-settings = "^2.2.0"  # BaseSettings for config.py
+
+# ── Security ───────────────────────────────────────────────
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}  # Password / API key hashing
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}  # JWT tokens
+
+# ── HTTP client ────────────────────────────────────────────
+httpx = "^0.27.0"             # Async HTTP client (used by webhook dispatcher)
+
+# ── Utilities ──────────────────────────────────────────────
+python-ulid = "^2.2.0"        # ULID for sortable unique IDs (better than UUID for DBs)
+tenacity = "^8.3.0"           # Retry logic with backoff (used in webhook dispatcher)
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+pytest-asyncio = "^0.23.0"    # Async test support
+pytest-cov = "^5.0.0"         # Coverage reports
+httpx = "^0.27.0"             # Test client for FastAPI
+factory-boy = "^3.3.0"        # Test data factories
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
