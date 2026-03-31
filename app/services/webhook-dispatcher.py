@@ -25,7 +25,7 @@ from app.schemas.webhook import WebhookEventPayload, TransactionEventData
 logger = logging.getLogger(__name__)
 
 
-# ── Payload signing ───────────────────────────────────────
+# Payload signing 
 
 def sign_payload(raw_secret: str, payload_body: str) -> str:
     """
@@ -100,7 +100,7 @@ def serialize_payload(payload: WebhookEventPayload) -> str:
     )
 
 
-# ── Retry timing ──────────────────────────────────────────
+# Retry timing 
 
 def calculate_next_retry(attempt_number: int) -> datetime:
     """
@@ -119,7 +119,7 @@ def calculate_next_retry(attempt_number: int) -> datetime:
     return datetime.now(timezone.utc) + timedelta(seconds=delay)
 
 
-# ── Webhook dispatcher ────────────────────────────────────
+# Webhook dispatcher 
 
 class WebhookDispatcher:
 
