@@ -104,7 +104,7 @@ class TransactionEngine:
             select(Account).where(
                 Account.account_type == AccountType.ESCROW,
                 Account.currency == currency,
-                Account.is_system_account == True,     # noqa: E712
+                Account.is_system_account.is_(True),     # noqa: E712
             )
         )
         account = result.scalar_one_or_none()
@@ -231,8 +231,9 @@ class TransactionEngine:
             result = await self._do_process(merchant_id, payload)
             return result, False
 
+        key: str = payload.idempotency_key
         return await self.idempotency.process_with_idempotency(
-            payload.idempotency_key,
+            key,
             str(merchant_id),
             self._do_process,
             merchant_id,
