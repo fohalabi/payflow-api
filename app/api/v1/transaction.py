@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, Query, status
 from sqlalchemy import select, func
 from sqlalchemy.orm import selectinload
 
-from app.api.deps import CurrentMerchant, DBSession, RedisClient
+from app.api.router import CurrentMerchant, DBSession, RedisClient
 from app.models.transaction import Transaction, TransactionStatus
 from app.schemas.transaction import (
     IdempotencyResponse,

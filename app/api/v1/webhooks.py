@@ -5,7 +5,7 @@ from uuid import UUID
 from fastapi import APIRouter, HTTPException, Query, status
 from sqlalchemy import select, func
 
-from app.api.deps import CurrentMerchant, DBSession
+from app.api.router import CurrentMerchant, DBSession, RedisClient
 from app.core.security import hash_api_key
 from app.models.webhook import WebhookDelivery, WebhookEndpoint
 from app.schemas.webhook import (

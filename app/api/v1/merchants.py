@@ -5,7 +5,7 @@ from fastapi import APIRouter, HTTPException, status
 from passlib.context import CryptContext
 from sqlalchemy import select
 
-from app.api.deps import CurrentMerchant, DBSession
+from app.api.router import CurrentMerchant, DBSession, RedisClient
 from app.core.security import (
     create_access_token,
     generate_api_key,
