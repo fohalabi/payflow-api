@@ -69,3 +69,13 @@ async def get_current_merchant(
 CurrentMerchant = Annotated[Merchant, Depends(get_current_merchant)]
 DBSession = Annotated[AsyncSession, Depends(get_db)]
 RedisClient = Annotated[Redis, Depends(get_redis)]
+
+from fastapi import APIRouter
+from app.api.v1 import merchants, transaction, webhooks, wallets, simulate
+
+router = APIRouter()
+router.include_router(merchants.router)
+router.include_router(transaction.router)
+router.include_router(webhooks.router)
+router.include_router(wallets.router)
+router.include_router(simulate.router)

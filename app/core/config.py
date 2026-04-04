@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     POSTGRES_USER: str = "payflow"
     POSTGRES_PASSWORD: str = "payflow"
     POSTGRES_DB: str = "payflow_db"
+    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000"]
 
     @computed_field
     @property
