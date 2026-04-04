@@ -135,13 +135,15 @@ async def generate_key(
 ) -> ApiKeyResponse:
     raw_key, hashed = generate_api_key(live=not current.is_test_mode)
     current.api_key_hash = hashed
+
+    created_at = datetime.now(timezone.utc)
     current.api_key_created_at = datetime.now(timezone.utc)
     await db.flush()
 
     return ApiKeyResponse(
         raw_key=raw_key,
         key_prefix=raw_key[:12],
-        created_at=current.api_key_created_at,
+        created_at=created_at,
     )
 
 

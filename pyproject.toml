@@ -9,6 +9,9 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.11"
 
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
 # ── Web framework ──────────────────────────────────────────
 fastapi = "^0.111.0"          # The web framework
 uvicorn = {extras = ["standard"], version = "^0.29.0"}  # ASGI server that runs FastAPI
